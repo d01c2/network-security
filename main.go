@@ -11,6 +11,9 @@ func readNBO(path string) uint32 {
 	if err != nil {
 		panic(err)
 	}
+	if len(num) < 4 {
+		panic("Invalid file size (smaller than 4 bytes)")
+	}
 	return binary.BigEndian.Uint32(num)
 }
 
