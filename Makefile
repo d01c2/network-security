@@ -1,15 +1,9 @@
 #Makefile
 all: sum-test
 
-sum-test: sum.o main.o
-	g++ -o sum-test sum.o main.o
-
-main.o: sum.h main.cpp
-	g++ -c -o main.o main.cpp
-
-sum.o: sum.h sum.cpp
-	g++ -c -o sum.o sum.cpp
+sum-test:
+	go build -o sum-test sum.go main.go
 
 clean:
+	go clean
 	rm -f sum-test
-	rm -f *.o
