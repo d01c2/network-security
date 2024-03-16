@@ -1,4 +1,3 @@
-#Makefile
 all: sum-test
 
 sum-test:
