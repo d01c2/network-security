@@ -146,7 +146,7 @@ func main() {
 			if err = handle.WritePacketData(buf2.Bytes()); err != nil {
 				panic("Error sending packet to network device")
 			}
-			fmt.Printf("[+] Successfully poisoned ARP table of %s\n", senderIPs[i])
+			fmt.Printf("[+] Successfully poisoned ARP cache of %s\n", senderIPs[i])
 
 		}
 	}
