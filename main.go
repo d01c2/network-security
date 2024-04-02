@@ -56,9 +56,9 @@ func buildNormalARPRequest(index int) []byte {
 		ProtAddressSize:   4,
 		Operation:         layers.ARPRequest,
 		SourceHwAddress:   attackerMAC,
-		SourceProtAddress: attackerIP,
+		SourceProtAddress: attackerIP.To4(),
 		DstHwAddress:      net.HardwareAddr{0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-		DstProtAddress:    senderIPs[index],
+		DstProtAddress:    senderIPs[index].To4(),
 	}
 	buf := gopacket.NewSerializeBuffer()
 	opts := gopacket.SerializeOptions{}
@@ -82,9 +82,9 @@ func buildInfectionARPReply(index int) []byte {
 		ProtAddressSize:   4,
 		Operation:         layers.ARPReply,
 		SourceHwAddress:   attackerMAC,
-		SourceProtAddress: targetIPs[index],
+		SourceProtAddress: targetIPs[index].To4(),
 		DstHwAddress:      senderMAC,
-		DstProtAddress:    senderIPs[index],
+		DstProtAddress:    senderIPs[index].To4(),
 	}
 	buf := gopacket.NewSerializeBuffer()
 	opts := gopacket.SerializeOptions{}
