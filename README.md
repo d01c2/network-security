@@ -1,5 +1,5 @@
 # pcap-test
-`pcap-test` is the assignment repository for the `System Network Security` course held at Korea University in Spring 2024. Below are the requirements for the assignment:
+This is the assignment repository for the **System Network Security** course held at Korea University in Spring 2024. Below are the requirements for the assignment:
 
 ## Assignment
 Write a program that captures packets and prints important information including:
