@@ -1,5 +1,5 @@
 # send-arp
-`send-arp` is the assignment repository for the `System Network Security` course held at Korea University in Spring 2024. Below are the requirements for the assignment:
+This is the assignment repository for the **System Network Security** course held at Korea University in Spring 2024. Below are the requirements for the assignment:
 
 ## Assignment
 Write a program that poisons Sender's ARP cache table.
