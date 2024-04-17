@@ -64,10 +64,7 @@ func buildNormalARPRequest(ip net.IP) []byte {
 	}
 	buf := gopacket.NewSerializeBuffer()
 	opts := gopacket.SerializeOptions{}
-	gopacket.SerializeLayers(buf, opts,
-		ethLayer,
-		arpLayer,
-	)
+	gopacket.SerializeLayers(buf, opts, ethLayer, arpLayer)
 	return buf.Bytes()
 }
 
@@ -90,10 +87,7 @@ func buildInfectionARPReply(index int) []byte {
 	}
 	buf := gopacket.NewSerializeBuffer()
 	opts := gopacket.SerializeOptions{}
-	gopacket.SerializeLayers(buf, opts,
-		ethLayer,
-		arpLayer,
-	)
+	gopacket.SerializeLayers(buf, opts, ethLayer, arpLayer)
 	return buf.Bytes()
 }
 
@@ -182,6 +176,7 @@ func spoof(handle *pcap.Handle, index int) {
 				}
 			}
 			fmt.Printf("[+] Successfully got MAC address of %s\n", senderIPs[index])
+			fmt.Printf("senderMAC: %s\n", senderMAC) // !debug
 
 			normalARPRequest = buildNormalARPRequest(targetIPs[index])
 			if err := handle.WritePacketData(normalARPRequest); err != nil {
@@ -199,9 +194,8 @@ func spoof(handle *pcap.Handle, index int) {
 				}
 			}
 			fmt.Printf("[+] Successfully got MAC address of %s\n", targetIPs[index])
-
-			fmt.Printf("senderMAC: %s\n", senderMAC) // !debug
 			fmt.Printf("targetMAC: %s\n", targetMAC) // !debug
+
 			poison(handle, index)
 		}
 	}
