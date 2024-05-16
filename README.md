@@ -7,7 +7,7 @@ Block 1 million harmful sites.
 ## Instructions
 ```
 make
-sudo ./1m-block top-1m.txt
+sudo ./1m-block top-1m.csv
 ```
 
 ## Details

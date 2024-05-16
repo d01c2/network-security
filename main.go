@@ -1,26 +1,87 @@
 package main
 
 import (
-	"bytes"
+	"bufio"
+	"encoding/csv"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/AkihiroSuda/go-netfilter-queue"
 	"github.com/google/gopacket/layers"
 )
 
-func isFiltered(payload []byte, host string) bool {
-	return bytes.Contains(payload, []byte(host))
+type TrieNode struct {
+	children   map[rune]*TrieNode
+	isTerminal bool
+}
+type Trie struct{ root *TrieNode }
+
+func NewTrie() *Trie { return &Trie{root: &TrieNode{children: make(map[rune]*TrieNode)}} }
+func (t *Trie) Insert(word string) {
+	node := t.root
+	for _, c := range word {
+		if node.children[c] == nil {
+			node.children[c] = &TrieNode{children: make(map[rune]*TrieNode)}
+		}
+		node = node.children[c]
+	}
+	node.isTerminal = true
+}
+func (t *Trie) Search(word string) bool {
+	node := t.root
+	for _, c := range word {
+		if node.children[c] == nil {
+			return false
+		}
+		node = node.children[c]
+	}
+	return node.isTerminal
+}
+
+var trie *Trie
+
+func isFiltered(payload []byte) bool {
+	var host string
+	reader := bufio.NewReader(strings.NewReader(string(payload)))
+	for {
+		if line, err := reader.ReadString('\n'); err != nil {
+			break
+		} else {
+			line = strings.TrimSpace(line)
+			if strings.HasPrefix(line, "Host:") {
+				parts := strings.Split(line, " ")
+				host = parts[1]
+				break
+			}
+		}
+	}
+	return trie.Search(host)
+}
+
+func parseCsv(target string) (ret []string) {
+	file, _ := os.Open(target)
+	rdr := csv.NewReader(bufio.NewReader(file))
+	rows, _ := rdr.ReadAll()
+	for _, row := range rows {
+		ret = append(ret, row[1])
+	}
+	return ret
 }
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Printf("syntax : netfilter-test <host>\n")
-		fmt.Printf("sample : netfilter-test test.gilgil.net\n")
+		fmt.Printf("syntax : 1m-block <site list file>\n")
+		fmt.Printf("sample : 1m-block top-1m.csv\n")
 		panic("Invalid usage")
 	}
 
-	var host string = os.Args[1]
+	var urlListFile string = os.Args[1]
+	harmfulUrls := parseCsv(urlListFile)
+	trie = NewTrie()
+	for _, url := range harmfulUrls {
+		trie.Insert(url)
+	}
 
 	nf, err := netfilter.NewNFQueue(0, 100, netfilter.NF_DEFAULT_PACKET_SIZE)
 	if err != nil {
@@ -45,7 +106,7 @@ func main() {
 					if len(payload) == 0 {
 						p.SetVerdict(netfilter.NF_ACCEPT)
 					} else {
-						if isFiltered(payload, host) {
+						if isFiltered(payload) {
 							fmt.Printf("[+] Successfully filtered the host\n")
 						} else {
 							p.SetVerdict(netfilter.NF_ACCEPT)
