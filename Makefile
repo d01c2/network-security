@@ -1,6 +1,6 @@
 all: 1m-block
 
-netfilter-test:
+1m-block:
 	go build -o 1m-block main.go
 
 clean:
