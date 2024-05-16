@@ -33,8 +33,8 @@ func main() {
 	for {
 		select {
 		case p := <-packets:
-			fmt.Printf("packet received\n") // !debug
-			fmt.Println(p.Packet.Dump())    // !debug
+			// fmt.Printf("packet received\n") // !debug
+			// fmt.Println(p.Packet.Dump())    // !debug
 
 			if tcpLayer := p.Packet.Layer(layers.LayerTypeTCP); tcpLayer != nil {
 				tcp, _ := tcpLayer.(*layers.TCP)
