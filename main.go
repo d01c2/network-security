@@ -60,8 +60,10 @@ func isFiltered(payload []byte) bool {
 	}
 	ret := trie.Search(host)
 	t2 := time.Now()
-	timeDiff := t2.Sub(t1)
-	fmt.Printf("[+] Time diff: %s\n", timeDiff)
+	if ret {
+		timeDiff := t2.Sub(t1)
+		fmt.Printf("[+] Time diff: %s\n", timeDiff)
+	}
 	return ret
 }
 
