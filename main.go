@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/AkihiroSuda/go-netfilter-queue"
 	"github.com/google/gopacket/layers"
@@ -42,6 +43,7 @@ func (t *Trie) Search(word string) bool {
 var trie *Trie
 
 func isFiltered(payload []byte) bool {
+	t1 := time.Now()
 	var host string
 	reader := bufio.NewReader(strings.NewReader(string(payload)))
 	for {
@@ -56,7 +58,11 @@ func isFiltered(payload []byte) bool {
 			}
 		}
 	}
-	return trie.Search(host)
+	ret := trie.Search(host)
+	t2 := time.Now()
+	timeDiff := t2.Sub(t1)
+	fmt.Print("Time diff:", timeDiff)
+	return ret
 }
 
 func parseCsv(target string) (ret []string) {
