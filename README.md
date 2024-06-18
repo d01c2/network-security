@@ -1,4 +1,4 @@
-# 1m-block
+# echo-client
 This is the assignment repository for the **System Network Security** course held at Korea University in Spring 2024. Below are the requirements for the assignment:
 
 ## Assignment
