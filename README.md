@@ -7,7 +7,7 @@ Write a program that blocks websites by using TCP packet injection (including RS
 ## Instructions
 ```
 make
-./tcp-block wlan0 "Host: test.gilgil.net"
+sudo ./tcp-block wlan0 "Host: test.gilgil.net"
 ```
 
 ## Details
