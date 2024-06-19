@@ -141,9 +141,9 @@ func packetHandler(packet gopacket.Packet, pattern string) {
 	payload := string(tcp.Payload)
 	if strings.Contains(payload, pattern) {
 		fmt.Printf("Pattern found! Blocking...\n")
-		sendRSTPacket(ip, tcp) // TODO: Fix RST Packet Sending Process
+		sendRSTPacket(ip, tcp)
 		time.Sleep(time.Second)
-		sendFINPacket(ip, tcp) // TODO: Fix FIN Packet Sending Process
+		sendFINPacket(ip, tcp)
 		fmt.Printf("Blocked!!!\n")
 	}
 }
