@@ -1,0 +1,127 @@
+06/19/2024-00:56:53.034314  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57518 -> 180.67.148.140:80
+06/19/2024-00:56:53.254429  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57520 -> 180.67.148.140:80
+06/19/2024-00:56:53.471201  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57519 -> 180.67.148.140:80
+06/19/2024-00:56:54.080501  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57518 -> 180.67.148.140:80
+06/19/2024-00:56:54.192100  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57521 -> 180.67.148.140:80
+06/19/2024-00:56:54.168060  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57523 -> 180.67.148.140:80
+06/19/2024-00:56:54.182489  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57524 -> 180.67.148.140:80
+06/19/2024-00:56:54.128643  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57519 -> 180.67.148.140:80
+06/19/2024-00:56:54.169974  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57522 -> 180.67.148.140:80
+06/19/2024-00:56:54.225337  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57521 -> 180.67.148.140:80
+06/19/2024-00:56:54.237933  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57521 -> 180.67.148.140:80
+06/19/2024-00:56:54.227752  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57524 -> 180.67.148.140:80
+06/19/2024-00:56:54.160517  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57518 -> 180.67.148.140:80
+06/19/2024-00:56:54.239264  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57524 -> 180.67.148.140:80
+06/19/2024-00:56:54.266445  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57524 -> 180.67.148.140:80
+06/19/2024-00:56:54.221198  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57522 -> 180.67.148.140:80
+06/19/2024-00:56:54.231317  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57523 -> 180.67.148.140:80
+06/19/2024-00:56:54.234935  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57522 -> 180.67.148.140:80
+06/19/2024-00:56:54.241187  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57523 -> 180.67.148.140:80
+06/19/2024-00:56:54.260325  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57523 -> 180.67.148.140:80
+06/19/2024-00:56:54.218564  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57519 -> 180.67.148.140:80
+06/19/2024-00:56:54.222404  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57518 -> 180.67.148.140:80
+06/19/2024-00:56:54.278600  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57523 -> 180.67.148.140:80
+06/19/2024-00:56:54.232476  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57518 -> 180.67.148.140:80
+06/19/2024-00:56:54.235332  [**] [1:10001:1] gilgil.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57519 -> 180.67.148.140:80
+06/19/2024-00:57:09.224013  [**] [1:10003:1] portal.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57531 -> 163.152.6.19:80
+06/19/2024-00:57:15.221418  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57539 -> 163.152.6.15:80
+06/19/2024-00:57:15.256368  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57539 -> 163.152.6.15:80
+06/19/2024-00:57:15.711345  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57543 -> 163.152.6.15:80
+06/19/2024-00:57:15.711328  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57542 -> 163.152.6.15:80
+06/19/2024-00:57:15.665872  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57540 -> 163.152.6.15:80
+06/19/2024-00:57:15.708320  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57541 -> 163.152.6.15:80
+06/19/2024-00:57:15.713564  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57545 -> 163.152.6.15:80
+06/19/2024-00:57:15.721433  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57542 -> 163.152.6.15:80
+06/19/2024-00:57:15.719832  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57543 -> 163.152.6.15:80
+06/19/2024-00:57:15.732350  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57542 -> 163.152.6.15:80
+06/19/2024-00:57:15.721471  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57541 -> 163.152.6.15:80
+06/19/2024-00:57:15.744137  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57542 -> 163.152.6.15:80
+06/19/2024-00:57:15.728206  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57545 -> 163.152.6.15:80
+06/19/2024-00:57:15.730177  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57543 -> 163.152.6.15:80
+06/19/2024-00:57:15.701365  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57540 -> 163.152.6.15:80
+06/19/2024-00:57:15.713561  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57540 -> 163.152.6.15:80
+06/19/2024-00:57:15.722940  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57540 -> 163.152.6.15:80
+06/19/2024-00:57:15.725110  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57544 -> 163.152.6.15:80
+06/19/2024-00:57:15.734314  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57540 -> 163.152.6.15:80
+06/19/2024-00:57:15.964052  [**] [1:10004:1] rms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57545 -> 163.152.6.15:80
+06/19/2024-00:57:40.971663  [**] [1:10008:1] acmicpc.net access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57585 -> 13.225.114.55:80
+06/19/2024-00:57:42.256136  [**] [1:10011:1] facebook.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57623 -> 157.240.215.35:443
+06/19/2024-00:57:55.233582  [**] [1:10020:1] linkedin.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57662 -> 13.107.42.14:443
+06/19/2024-00:58:04.905445  [**] [1:10011:1] facebook.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57669 -> 157.240.215.35:443
+06/19/2024-00:58:04.910252  [**] [1:10011:1] facebook.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57670 -> 157.240.215.35:443
+06/19/2024-00:58:07.591009  [**] [1:10012:1] instagram.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57671 -> 157.240.215.174:443
+06/19/2024-00:58:08.438895  [**] [1:10012:1] instagram.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57675 -> 157.240.215.63:443
+06/19/2024-00:58:08.438877  [**] [1:10012:1] instagram.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57677 -> 157.240.215.63:443
+06/19/2024-00:58:08.438811  [**] [1:10012:1] instagram.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57673 -> 157.240.215.63:443
+06/19/2024-00:58:08.438886  [**] [1:10012:1] instagram.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57676 -> 157.240.215.63:443
+06/19/2024-00:58:08.438865  [**] [1:10012:1] instagram.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57674 -> 157.240.215.63:443
+06/19/2024-00:58:08.438850  [**] [1:10012:1] instagram.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57672 -> 157.240.215.63:443
+06/19/2024-00:58:08.871805  [**] [1:10011:1] facebook.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57681 -> 157.240.215.35:443
+06/19/2024-00:58:10.396195  [**] [1:2231000:1] SURICATA QUIC failed decrypt [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {UDP} 192.168.0.18:51602 -> 142.250.76.142:443
+06/19/2024-00:58:10.472441  [**] [1:2231000:1] SURICATA QUIC failed decrypt [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {UDP} 192.168.0.18:51602 -> 142.250.76.142:443
+06/19/2024-00:58:11.064120  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57683 -> 54.230.62.214:443
+06/19/2024-00:58:11.918403  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57687 -> 54.230.168.13:443
+06/19/2024-00:58:11.903072  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57684 -> 54.230.168.13:443
+06/19/2024-00:58:11.905089  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57686 -> 54.230.168.13:443
+06/19/2024-00:58:11.903125  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57685 -> 54.230.168.13:443
+06/19/2024-00:58:12.950303  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57695 -> 34.204.157.26:443
+06/19/2024-00:58:12.833838  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57691 -> 44.215.128.78:443
+06/19/2024-00:58:12.947263  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57694 -> 34.204.157.26:443
+06/19/2024-00:58:12.948551  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57692 -> 209.54.181.50:443
+06/19/2024-00:58:12.953870  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57698 -> 34.204.157.26:443
+06/19/2024-00:58:12.963932  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57696 -> 34.204.157.26:443
+06/19/2024-00:58:12.948590  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57697 -> 34.204.157.26:443
+06/19/2024-00:58:12.948575  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57693 -> 34.204.157.26:443
+06/19/2024-00:58:13.715014  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57706 -> 209.54.181.50:443
+06/19/2024-00:58:15.128408  [**] [1:10011:1] facebook.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57739 -> 157.240.215.35:443
+06/19/2024-00:58:15.128378  [**] [1:10019:1] x.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57727 -> 172.64.146.152:443
+06/19/2024-00:58:15.627963  [**] [1:2210044:2] SURICATA STREAM Packet with invalid timestamp [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {TCP} 34.98.64.218:443 -> 192.168.0.18:57741
+06/19/2024-00:58:15.627965  [**] [1:2210044:2] SURICATA STREAM Packet with invalid timestamp [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {TCP} 34.98.64.218:443 -> 192.168.0.18:57741
+06/19/2024-00:58:15.810915  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57755 -> 209.54.181.50:443
+06/19/2024-00:58:15.800099  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57754 -> 209.54.181.50:443
+06/19/2024-00:58:16.761418  [**] [1:10014:1] discord.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57774 -> 162.159.136.232:443
+06/19/2024-00:58:16.761418  [**] [1:2035463:3] ET INFO Observed Discord Domain (discord .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57774 -> 162.159.136.232:443
+06/19/2024-00:58:16.720961  [**] [1:2035465:4] ET INFO Observed Discord Domain in DNS Lookup (discord .com) [**] [Classification: Misc activity] [Priority: 3] {UDP} 192.168.0.18:59414 -> 168.126.63.1:53
+06/19/2024-00:58:16.761369  [**] [1:10014:1] discord.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57773 -> 162.159.136.232:443
+06/19/2024-00:58:16.761369  [**] [1:2035463:3] ET INFO Observed Discord Domain (discord .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57773 -> 162.159.136.232:443
+06/19/2024-00:58:17.323185  [**] [1:2035464:3] ET INFO Observed Discord Domain (discordapp .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57797 -> 162.159.129.233:443
+06/19/2024-00:58:17.326591  [**] [1:2035464:3] ET INFO Observed Discord Domain (discordapp .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57798 -> 162.159.129.233:443
+06/19/2024-00:58:17.326664  [**] [1:2035464:3] ET INFO Observed Discord Domain (discordapp .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57796 -> 162.159.129.233:443
+06/19/2024-00:58:17.285511  [**] [1:10013:1] amazon.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57775 -> 209.54.181.50:443
+06/19/2024-00:58:17.301898  [**] [1:2035466:4] ET INFO Observed Discord Domain in DNS Lookup (discordapp .com) [**] [Classification: Misc activity] [Priority: 3] {UDP} 192.168.0.18:61938 -> 168.126.63.1:53
+06/19/2024-00:58:17.326653  [**] [1:2035464:3] ET INFO Observed Discord Domain (discordapp .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57799 -> 162.159.129.233:443
+06/19/2024-00:58:17.326564  [**] [1:2035464:3] ET INFO Observed Discord Domain (discordapp .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57800 -> 162.159.129.233:443
+06/19/2024-00:58:17.326672  [**] [1:2035464:3] ET INFO Observed Discord Domain (discordapp .com in TLS SNI) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.0.18:57795 -> 162.159.129.233:443
+06/19/2024-00:58:27.256092  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57809 -> 151.101.194.167:443
+06/19/2024-00:58:27.306532  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57810 -> 146.75.50.167:443
+06/19/2024-00:58:27.387535  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57813 -> 18.67.51.66:443
+06/19/2024-00:58:27.388368  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57816 -> 18.67.51.66:443
+06/19/2024-00:58:27.390344  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57817 -> 18.67.51.66:443
+06/19/2024-00:58:27.387592  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57812 -> 18.67.51.66:443
+06/19/2024-00:58:27.396703  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57820 -> 54.230.61.79:443
+06/19/2024-00:58:27.385822  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57811 -> 146.75.50.214:443
+06/19/2024-00:58:27.392438  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57819 -> 146.75.50.214:443
+06/19/2024-00:58:27.390318  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57814 -> 18.67.51.66:443
+06/19/2024-00:58:27.390364  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57815 -> 18.67.51.66:443
+06/19/2024-00:58:27.680062  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57826 -> 54.230.61.21:443
+06/19/2024-00:58:27.818755  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57823 -> 52.24.60.233:443
+06/19/2024-00:58:27.908543  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57824 -> 44.235.129.100:443
+06/19/2024-00:58:28.348720  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57829 -> 54.192.175.15:443
+06/19/2024-00:58:28.623149  [**] [1:10015:1] twitch.tv access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57831 -> 54.230.61.21:443
+06/19/2024-00:58:31.371547  [**] [1:10016:1] developer.mozilla.org access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57842 -> 34.111.97.67:443
+06/19/2024-00:58:31.308751  [**] [1:10016:1] developer.mozilla.org access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57841 -> 34.111.97.67:443
+06/19/2024-00:58:34.304569  [**] [1:10017:1] javascript.info access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57845 -> 104.26.12.17:443
+06/19/2024-00:58:40.146287  [**] [1:10018:1] kulms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57850 -> 13.125.18.192:443
+06/19/2024-00:58:40.149397  [**] [1:10018:1] kulms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57851 -> 13.125.18.192:443
+06/19/2024-00:58:40.147758  [**] [1:2231000:1] SURICATA QUIC failed decrypt [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {UDP} 192.168.0.18:52173 -> 172.217.25.164:443
+06/19/2024-00:58:40.218649  [**] [1:2231000:1] SURICATA QUIC failed decrypt [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {UDP} 192.168.0.18:52173 -> 172.217.25.164:443
+06/19/2024-00:58:41.194598  [**] [1:10018:1] kulms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57856 -> 13.125.18.192:443
+06/19/2024-00:58:41.178878  [**] [1:10018:1] kulms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57853 -> 13.125.18.192:443
+06/19/2024-00:58:41.176716  [**] [1:10018:1] kulms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57854 -> 13.125.18.192:443
+06/19/2024-00:58:41.180034  [**] [1:10018:1] kulms.korea.ac.kr access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57855 -> 13.125.18.192:443
+06/19/2024-00:58:44.979136  [**] [1:10019:1] x.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57865 -> 104.244.42.2:443
+06/19/2024-00:58:46.266525  [**] [1:10019:1] x.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57878 -> 104.244.42.67:443
+06/19/2024-00:58:46.265288  [**] [1:10019:1] x.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57879 -> 104.244.42.67:443
+06/19/2024-00:58:49.355233  [**] [1:2033078:4] ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard High Port) [**] [Classification: Misc activity] [Priority: 3] {UDP} 192.168.0.18:51136 -> 74.125.250.129:19302
+06/19/2024-00:58:49.369693  [**] [1:10020:1] linkedin.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57883 -> 152.199.40.67:443
+06/19/2024-00:58:49.566811  [**] [1:10020:1] linkedin.com access [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.0.18:57884 -> 144.2.9.1:443
